@@ -31,14 +31,14 @@ public class Shift {
         this.day = day;
     }
     public Long getId() {return id;}
+
     public Long getStartTime() {return startTime;}
-
     public void setStartTime(Long startTime){this.startTime = startTime;}
-    public Long getEndTime() {return endTime;}
-
-    public void setEndTime(Long endTime){this.endTime = endTime;}
-    public String getRole() { return role; }
     
+    public Long getEndTime() {return endTime;}
+    public void setEndTime(Long endTime){this.endTime = endTime;}
+    
+    public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
     public String getDay() { return day; }

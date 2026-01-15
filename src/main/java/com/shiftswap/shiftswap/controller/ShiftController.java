@@ -36,4 +36,5 @@ public class ShiftController {
         shift.setAssignedUser(user);   // requires setter on Shift
         return shiftRepository.save(shift);
     }
+    
 }
