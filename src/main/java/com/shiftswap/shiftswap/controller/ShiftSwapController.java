@@ -6,6 +6,7 @@ import com.shiftswap.shiftswap.model.ShiftSwap;
 import com.shiftswap.shiftswap.repository.ShiftRepository;
 import com.shiftswap.shiftswap.repository.ShiftSwapRepository;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/shiftSwap")
@@ -68,5 +69,18 @@ public class ShiftSwapController {
             swap.setStatus("REJECTED");
             return shiftSwapRepository.save(swap);
         }
+    @GetMapping("/pending")
+        public List<ShiftSwap> pending() {
+            return shiftSwapRepository.findByStatus("PENDING");
+        }
+    @GetMapping("/outgoing/{userId}")
+        public List<ShiftSwap> outgoing(@PathVariable Long userId) {
+            return shiftSwapRepository.findByFromUser_Id(userId);
+        }
+    @GetMapping("/incoming/{userId}")
+        public List<ShiftSwap> incoming(@PathVariable Long userId) {
+            return shiftSwapRepository.findByToUser_Id(userId);
+        }
 
+    
 }

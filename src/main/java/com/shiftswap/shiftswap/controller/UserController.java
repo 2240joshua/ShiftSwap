@@ -1,21 +1,27 @@
 package com.shiftswap.shiftswap.controller;
+
+import com.shiftswap.shiftswap.model.Shift;
 import com.shiftswap.shiftswap.model.User;
+import com.shiftswap.shiftswap.repository.ShiftRepository;
 import com.shiftswap.shiftswap.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserRepository userRepository;
+    private final ShiftRepository shiftRepository;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, ShiftRepository shiftRepository) {
         this.userRepository = userRepository;
+        this.shiftRepository = shiftRepository;
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        // For now: saves whatever JSON you send (password hashing later)
         return userRepository.save(user);
     }
 
@@ -23,5 +29,9 @@ public class UserController {
     public User getUser(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow();
     }
-}
 
+    @GetMapping("/{id}/shifts")
+    public List<Shift> getUserShifts(@PathVariable Long id) {
+        return shiftRepository.findByAssignedUser_Id(id);
+    }
+}
