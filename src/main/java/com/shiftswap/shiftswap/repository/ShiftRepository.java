@@ -9,4 +9,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ShiftRepository extends JpaRepository<Shift, Long> {
     List<Shift> findByAssignedUser_Id(Long userId);
+    boolean existsByAssignedUser_IdAndDayAndStartTimeLessThanAndEndTimeGreaterThan(
+    Long userId,
+    String day,
+    Long endTime,
+    Long startTime);
+
 }

@@ -7,7 +7,6 @@ import com.shiftswap.shiftswap.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -18,6 +17,11 @@ public class UserController {
     public UserController(UserRepository userRepository, ShiftRepository shiftRepository) {
         this.userRepository = userRepository;
         this.shiftRepository = shiftRepository;
+    }
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @PostMapping

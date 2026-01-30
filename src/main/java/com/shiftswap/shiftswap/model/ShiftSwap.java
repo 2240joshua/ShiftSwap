@@ -2,7 +2,7 @@ package com.shiftswap.shiftswap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
+import com.shiftswap.shiftswap.model.SwapStatus;
 @Entity
 @Table(name = "shift_swaps")
 public class ShiftSwap {
@@ -26,12 +26,12 @@ public class ShiftSwap {
     @JsonIgnoreProperties({"password"})
     private User toUser;
 
-    private String status;
+    private SwapStatus status;
     private Long createdAt;
 
     public ShiftSwap() {}
 
-    public ShiftSwap(Shift shift, User fromUser, User toUser, String status, Long createdAt) {
+    public ShiftSwap(Shift shift, User fromUser, User toUser, SwapStatus status, Long createdAt) {
         this.shift = shift;
         this.fromUser = fromUser;
         this.toUser = toUser;
@@ -50,8 +50,8 @@ public class ShiftSwap {
     public User getToUser() { return toUser; }
     public void setToUser(User toUser) { this.toUser = toUser; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public SwapStatus getStatus() { return status; }
+    public void setStatus(SwapStatus status) { this.status = status; }
 
     public Long getCreatedAt() { return createdAt; }
     public void setCreatedAt(Long createdAt) { this.createdAt = createdAt; }
